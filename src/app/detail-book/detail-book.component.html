@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Detail Book</h1>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Key</th>
+                <th>Revision</th>
+                <th>Created</th>
+                <th>Last_modified</th>
+                <th>Detail</th>
+                <th>Detail Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let dt of authorWorks | paginate : {
+              itemsPerPage: 10, currentPage: p
+            }">
+              <td>{{dt.type}}</td>
+              <td>{{dt.title}}</td>
+              <td>{{dt.key}}</td>
+              <td>{{dt.revision}}</td>
+              <td>{{dt.created.value | date : 'dd/MM/yyyy'}}</td>
+              <td>{{dt.last_modified.value  | date : 'dd/MM/yyyy'}}</td>
+              <td><button class="btn btn-primary" nz-button (click)="showModal()">Detail</button>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="Detail of Book" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                <ng-container *nzModalContent="">
+                  <div>
+                    <p>Type: {{dt.type}}</p>
+                    <p>Title: {{dt.title}}</p>
+                    <p>Key: {{dt.key}}</p>
+                    <p>Revision: {{dt.revision}}</p>
+                    <p>Created: {{dt.created.value | date : 'dd/MM/yyyy'}}</p>
+                    <p>Last modified: {{dt.last_modified.value  | date : 'dd/MM/yyyy'}}</p>
+                  </div>
+                </ng-container>
+              </nz-modal></td>
+              <td><button *ngFor="let ft of dt.authors" class="btn btn-primary" routerLinkActive="active current" [routerLink]="['/authordetail', tach(ft.author.key)]">Detail</button></td>
+            </tr>
+          </tbody>
+    </table>
+    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>
+</div>

@@ -1,0 +1,35 @@
+<div class="containter">
+    <h1>Detail Author</h1>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Name</th>
+                <th>Personal_name</th>
+                <th>Birth_date</th>
+                <th>Death_date</th>
+                <th>Alternate_names</th>
+                <th>Created</th>
+                <th>Last_modified</th>
+                <th>Latest_revision</th>
+                <th>Revision</th>
+                <th>Detail_book</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+              <td>{{author?.key}}</td>
+              <td>{{author?.name}}</td>
+              <td>{{author?.personal_name}}</td>
+              <td>{{author?.birth_date}}</td>
+              <td>{{author?.death_date}}</td>
+              <td>{{author?.alternate_names}}</td>
+              <td>{{author?.created?.value | date : 'dd/MM/yyyy'}}/</td>
+              <td>{{author?.last_modified?.value| date : 'dd/MM/yyyy'}}</td>
+              <td>{{author?.latest_revision}}</td>
+              <td>{{author?.revision}}</td>
+              <td><button class="btn btn-primary"  routerLinkActive="active current" [routerLink]="['/book', tach(author?.key) ]">Detail</button></td>
+            </tr>
+          </tbody>
+    </table>
+</div>

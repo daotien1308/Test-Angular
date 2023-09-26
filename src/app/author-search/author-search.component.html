@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>Library</h1>
+
+    <div class="input-group mb-3">
+        <input id="text" type="text" class="form-control" placeholder="Search anything..." 
+        aria-label="Recipient's username" 
+        aria-describedby="basic-addon2" 
+        (keydown.enter) ="getData()" [(ngModel)]="txtAuthorName" (ngModelChange)="this.userQuestionUpdate.next($event)" >
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" id="button" type="button" mat-raised-button color="primary"(click)="getData()">Search</button>
+        </div>
+      </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Name</th>
+                <th>Birth_Date</th>
+                <th>Top_work</th>
+                <th>W_Count</th>
+                <th>W_Count</th>
+                <th>Detail_author</th>
+                <th>Detail_book</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dt of authorName | paginate : {
+                itemsPerPage: 10, currentPage: p
+              }">
+              <td>{{dt.key}}</td>
+              <td>{{dt.name}}</td>
+              <td>{{dt.birth_date}}</td>
+              <td>{{dt.top_work}}</td>
+              <td>{{dt.work_count}}</td>
+              <td>{{dt.top_subjects}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" nz-button [nzType]="'primary'" (click)="showModal()">
+                    Detail
+                    
+                  </button>
+                
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <nz-modal  [(nzVisible)]="isVisible" nzTitle="Detail of Author" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                            <ng-container *nzModalContent="">
+                              <p>Key: {{ dt.key }}</p>
+                              <p>Type: {{dt.type}}</p>
+                              <p>Name: {{dt.name}}</p>
+                              <p>Birth date: {{dt.birth_date}}</p>
+                              <p>Death date: {{dt.death_date}}</p>
+                              <p>Top work: {{dt.top_work}}</p>
+                              <p>Work count: {{dt.work_count}}</p>
+                              <p>Version: {{dt._version_}}</p>
+                            </ng-container>
+                          </nz-modal>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </td>
+              <td><button class="btn btn-primary" routerLinkActive="active current" [routerLink]="['/book', dt.key]" >Detail</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>
+</div>
