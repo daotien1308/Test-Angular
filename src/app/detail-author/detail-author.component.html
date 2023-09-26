@@ -18,17 +18,17 @@
         </thead>
         <tbody>
             <tr >
-              <td>{{author?.key}}</td>
-              <td>{{author?.name}}</td>
-              <td>{{author?.personal_name}}</td>
-              <td>{{author?.birth_date}}</td>
-              <td>{{author?.death_date}}</td>
-              <td>{{author?.alternate_names}}</td>
-              <td>{{author?.created?.value | date : 'dd/MM/yyyy'}}/</td>
-              <td>{{author?.last_modified?.value| date : 'dd/MM/yyyy'}}</td>
-              <td>{{author?.latest_revision}}</td>
-              <td>{{author?.revision}}</td>
-              <td><button class="btn btn-primary"  routerLinkActive="active current" [routerLink]="['/book', tach(author?.key) ]">Detail</button></td>
+              <td>{{author.key}}</td>
+              <td>{{author.name}}</td>
+              <td>{{author.personal_name}}</td>
+              <td>{{author.birth_date}}</td>
+              <td>{{author.death_date}}</td>
+              <td>{{author.alternate_names}}</td>
+              <td>{{author.created.value | date : 'dd/MM/yyyy'}}/</td>
+              <td>{{author.last_modified.value| date : 'dd/MM/yyyy'}}</td>
+              <td>{{author.latest_revision}}</td>
+              <td>{{author.revision}}</td>
+              <td><button class="btn btn-primary"  routerLinkActive="active current" [routerLink]="['/book', tach(author.key) ]">Detail</button></td>
             </tr>
           </tbody>
     </table>
